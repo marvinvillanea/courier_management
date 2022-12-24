@@ -72,20 +72,44 @@ class UsersControllerClass {
 
             $details = '';
             $get_Rate = $this->db->select("select * from rate_courier where parcel_id = ? ", array($data[0]["idparcel_details"]));
-
+            
+            if(count($get_Rate) > 0){
+                if(!empty($get_Rate[0]['comment']) || $get_Rate[0]['comment'] != null){
+                    $comment = 'value="'.$get_Rate[0]['comment'].'" readonly';
+                }else{
+                    $comment = 'value="No review/feedback"';
+                }
+            } else {
+                $comment = 'placeholder="Enter Feedback/Review"';
+            }
             if(count($get_Rate) > 0 ){
-                $details = $get_Rate[0]['rate_type'];
+                switch ($get_Rate[0]['rate_type']){
+                    case 1: 
+                        $details = "Very Poor";
+                    break;
+                    case 2: 
+                        $details = "Poor";
+                    break;
+                    case 3: 
+                        $details = "Good";
+                    break;
+                    case 4: 
+                        $details = "Very Good";
+                    break;
+                    case 5: 
+                        $details = "Excellent";
+                    break;
+                }
             } else {
                 $details = '<select name="rate_type">';
                 $details .= '<option value ="select">--Plase select rate--</option>';
-                $details .= '<option value ="1">1</option>';
-                $details .= '<option value ="2">2</option>';
-                $details .= '<option value ="3">3</option>';
-                $details .= '<option value ="4">4</option>';
-                $details .= '<option value ="5">5</option>';
+                $details .= '<option value ="1">Very Poor</option>';
+                $details .= '<option value ="2">Poor</option>';
+                $details .= '<option value ="3">Good</option>';
+                $details .= '<option value ="4">Very Good</option>';
+                $details .= '<option value ="5">Excellent</option>';
                 $details .= '</select>';
             }
-
             $div2 = '<div id="parcel_details">Recipient Name: '.$data[0]["recepient_name"].'<br><hr>
             <input type="hidden" name="parcel_details_id" value="'.$data[0]["idparcel_details"].'" />
             Recipient Address: '.$data[0]["recepient_address"].'<br><hr>
@@ -98,6 +122,7 @@ class UsersControllerClass {
             Amount: '.$data[0]["amount"].'<br><hr>
             Recipient Image: <br><hr><center>
             <image src="'.$data[0]["recipient_image"].'" alt="recipient-image" width="180" height="160" ></center><br><hr>
+            Comment: <input type="text" name="user_comment" class="form-control" id="user_comment" '.$comment.' /><br><hr>
             Validate Courier: '.$details.'
             </div>';
 
@@ -126,14 +151,18 @@ class UsersControllerClass {
             // echo "</pre>";
             if($rate_type == "select") {
                 echo "select";
+            }elseif(trim($user_comment) == ""){
+                echo "select";
             } else {
                 $get_details = $this->db->Select("select * from parcel_details where idparcel_details = ? limit 1", array($parcel_details_id));
-                $this->db->Insert("INSERT INTO rate_courier (user_id,rate_type,courier_id,parcel_id) VALUES (?,?,?,?) ", 
+                $this->db->Insert("INSERT INTO rate_courier (user_id,rate_type,courier_id,parcel_id,comment) VALUES (?,?,?,?,?) ", 
                 array(
                 $get_details[0]["user_id"], 
                 $rate_type,
                 $get_details[0]["idcourier_details"], 
-                $get_details[0]["idparcel_details"]));
+                $get_details[0]["idparcel_details"],
+                $user_comment,
+                ));
                 echo "SUCCESS";
             }
 		} catch(\Exception $e) {

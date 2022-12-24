@@ -33,6 +33,7 @@ include('./controller/Portal.php');
                 "report",
                 "set_weight",
                 "disapproved_courier",
+                "inventory",
                 "users",
             ],
             "users" =>[
@@ -46,7 +47,6 @@ include('./controller/Portal.php');
                 "denied",
                 "delivered",
                 "unsccesfull_deliver",
-                "rate_courier",
                 "list_nofity",
             ],
             "courier" => [

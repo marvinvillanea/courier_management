@@ -32,6 +32,10 @@
                     <a href="index.php?page=tracking_parcel">
                         <i class="fas fa-tachometer-alt"></i>Tracking Parcel</a>
                 </li>
+                <li class="<?php if($_GET["page"] == 'inventory') {echo "active";}?>" >
+                    <a href="index.php?page=inventory">
+                        <i class="fas fa-tachometer-alt"></i>Number of Deliveries</a>
+                </li>
                <!--  <li class="<?php if($_GET["page"] == 'report') {echo "active";}?>" >
                     <a href="index.php?page=report">
                         <i class="fas fa-tachometer-alt"></i>Report</a>

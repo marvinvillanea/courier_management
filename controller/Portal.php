@@ -141,11 +141,18 @@ function updateUSerProfile($db){
     }
     
 }
-
 function getCourierDetails($db){
     $data = $db->Select("SELECT * FROM users 
     inner join personal_info using(user_id) 
     where status = 1 and user_type = 3 and first_name is not null and last_name is not null and middle_name is not null  ");
+    return $data;
+    // return $data[0];
+}
+
+function getAvailableCourier($db){
+    $data = $db->Select("SELECT * FROM users 
+    inner join personal_info using(user_id) 
+    where status = 1 and user_type = 3 and first_name is not null and last_name is not null and middle_name is not null order by rand() limit 1 ");
     return $data;
     // return $data[0];
 }

@@ -140,7 +140,63 @@ class ActionAdminClass {
 		}
 		
 	}
+/*
+	public function viewDeliveries(){
+		try {
+			extract($_POST);
+			// $status = $name == "reject" ? 3 : 1;
+			$data = $this->db->select("select 
+				idparcel_details,
+				user_id ,
+				idcourier_details ,
+				recepient_name,
+				recepient_address,
+				recepient_contact_no,
+				parcel_number,
+				parcel_description,
+				type_delivery,
+				weight_id,
+				created_at,
+				status,
+				amount,
+				address_sender,
+				recipient_image
+				from parcel_details pd
+				WHERE status = ? limit 1 ", array($statusid));
 
+            $status_color = [
+                1 => 'green',
+                5 => 'green',
+                2 => 'red',
+                3 => 'red',
+                0 => 'green',
+            ];
+            $status_color = array_key_exists($data[0]["status"], $status_color ) ? $status_color[$data[0]["status"]] : 'blue';
+            $status_description = $data[0]["status"] == 1 ? "Active" : "Inactive";
+            // $json_encode = json_encode($data[0]);
+            $div2 = 'Date Time Created: '.$data[0]["created_at"].'<br><hr>
+            Status: <span style="color: '.$status_color.' ">'.$status_description.'</span><br><hr>
+            Email: '.$data[0]["email"].'<br><hr>
+            Province: '.ucwords($data[0]["province"]).'<br><hr>
+            City: '.ucwords($data[0]["city"]).'<br><hr>
+            Barangay: '.ucwords($data[0]["barangay"]).'<br><hr>
+            Zone: '.ucwords($data[0]["zone"]).'<br><hr>
+            Landmark: '.ucwords($data[0]["landmark"]).'<br><hr>
+            Resume: <a href="'.$data[0]["resume"].'"  target="_blank">'.$data[0]["resume"].'</a><br><hr>
+            Description: '.$data[0]["description"].'
+            
+            ';
+
+            $div = '<div id="parcel_details"><div class="modal-body">'.$div2.'</div><div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div></div>';
+			echo $div;
+		} catch(\Exception $e) {
+			echo "FAILED";
+		}
+		
+	}
+*/
 	public function get_details_users(){
 		try {
 			extract($_POST);

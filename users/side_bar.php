@@ -32,7 +32,7 @@
                     <ul class="list-unstyled navbar__sub-list js-sub-list">
                         <li>
                             <a href="index.php?page=parcel">
-                                <i class="fas fa-tachometer-alt"></i>Add New</a>
+                                <i class="fas fa-tachometer-alt"></i>Create Order</a>
                         </li>
                         <li>
                             <a href="index.php?page=all_list">

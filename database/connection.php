@@ -9,10 +9,10 @@ class DatabaseClass{
 
     private $connection = null;
 
-    private $dbhost = ""; // Ip Address of database if external connection.
-    private $dbuser = ""; // Username for DB
-    private $dbpass = ""; // Password for DB
-    private $dbname = ""; // DB Name
+    private $dbhost = "localhost"; // Ip Address of database if external connection.
+    private $dbuser = "root"; // Username for DB
+    private $dbpass = "linkers"; // Password for DB
+    private $dbname = "courier_management"; // DB Name
 
     // this function is called everytime this class is instantiated		
     public function __construct(){

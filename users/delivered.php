@@ -199,7 +199,7 @@
         $("form#data_pass").on('submit',(function(e) {
         e.preventDefault();
         $.ajax({
-            url:  "api/routes.php",
+        url:  "api/routes.php",
         type: "POST",
         data:  new FormData(this),
         contentType: false,
@@ -213,7 +213,7 @@
         success: function(data)
             {
                 if(data =='select'){
-                    alert('Please Select Type');
+                    alert(data);
                 } else {
                     location.reload(true); 
                 }

@@ -41,7 +41,7 @@
         
         <div class="col-lg-12" style="margin-top:20px;">
             <div class="card">
-                <div class="card-header">Add Parcel</div>
+                <div class="card-header">Create Order</div>
                 <div class="card-body">
                     <div class="card-title">
                         <h3 class="text-center title-2">Sender Information</h3>
@@ -76,32 +76,36 @@
                         <div class="form-group">
                             <label class=" form-control-label">Address:</label>
                                 <div class="form-check">
+                                    <!-- <select name="selectAdd" id="selectAdd">
+                                        <div class="radio">
+                                            <label for="radio1" class="form-check-label " >
+                                                <input type="radio" id="radio1" name="selected_address" value="<?php echo $information["street"].", ".$information["barangay"]. ", ".$information["city"]. ", ".$information["province"]. ", ".$information["zip_code"] ;  ?>" checked class="form-check-input"><?php echo $information["street"].", ".$information["barangay"]. ", ".$information["city"]. ", ".$information["province"]. ", ".$information["zip_code"] ;  ?>
+                                            </label>
+                                        </div>
+                                    </select> -->
                                     <div class="radio">
-                                        <label for="radio1" class="form-check-label " >
-                                            <input type="radio" id="radio1" name="selected_address" value="<?php echo $information["street"].", ".$information["barangay"]. ", ".$information["city"]. ", ".$information["province"]. ", ".$information["zip_code"] ;  ?>" checked class="form-check-input"><?php echo $information["street"].", ".$information["barangay"]. ", ".$information["city"]. ", ".$information["province"]. ", ".$information["zip_code"] ;  ?>
-                                        </label>
-                                    </div>
+                                        <label for="radio1" class="form-check-label">
+                                        <select name="selected_address" id="selected_address" class="form-control">
                                     <?php
                                         $list_optional_address = getaddressOptional($db);
                                         if(count($list_optional_address) > 0){
                                             foreach ($list_optional_address as $key => $value) {
                                                 ?>
-                                                    <div class="radio">
-                                                        <label for="radio1" class="form-check-label">
-                                                        <input type="radio" id="radio2" name="selected_address" value="<?php echo $value["address"] ;  ?>"  class="form-check-input">&nbsp; <?php echo $value["address"] ;  ?>
-                                                        </label>
+                                                            <option id="selected_address" name="selected_address" value="<?php echo $value["address"] ;  ?>"  class="form-check-input">&nbsp; <?php echo $value["address"] ;  ?>
+                                                       
                                                     </div>
                                                 <?php
                                             }
                                             
                                         } 
-                                    ?>
+                                    ?> 
                                     <div class="radio">
-                                        <label for="radio1" class="form-check-label" style="width:100%" >
-                                            <input type="radio" id="radio3" name="selected_address" value="new"  class="form-check-input">&nbsp; Add other Address
+                                        <option id="selected_address" name="selected_address" value="new"  class="form-check-input">&nbsp; Add other Address
+                                            <!-- <input type="radio" id="radio3" name="selected_address" value="new"  class="form-check-input">&nbsp; Add other Address -->
                                             <!-- <input id="cc-other_address" name="address_sender" type="text" class="form-control " value="" placeholder="Other address"> -->
-                                        </label>
-                                    </div>
+                                        </div>
+                                    </label>
+                                    </select>
                                     
                                 </div>
                         </div>
@@ -189,26 +193,25 @@
                         </div>
                         <hr>
                         <div class="form-group">
-                            <label for="cc-payment" class="control-label mb-1">Name:</label>
+                            <!-- <label for="cc-payment" class="control-label mb-1">Name:</label> -->
                             <!-- <input id="cc-pament" name="cc-payment" type="text" class="form-control"  value="" > -->
-                            <select name="idcourier_details" id="idcourier_details" class="form-control">
+                            <!-- <select name="idcourier_details" id="idcourier_details" class="form-control"> -->
                                 <?php 
-                                    $list_courier = getCourierDetails($db);
+                                    $list_courier = getAvailableCourier($db);
                                     if(count($list_courier) > 0){
-                                        echo "<option value='none'>--SELECT COURIER--</option>";
                                         foreach ($list_courier as $key => $value) {
                                             ?>
-                                            <option value="<?php echo $value["user_id"] ?>"><?php echo ucfirst($value["first_name"])." ".ucfirst(substr($value["middle_name"],0,1)). ". ".ucfirst($value["last_name"]);  ?></option>
+                                            <input type="hidden" name="idcourier_details" id="idcourier_details" value="<?php echo $value["user_id"] ?>" />
                                             <?php
                                         }
                                         
                                     } else {
                                         ?>
-                                        <option>No courier Available!..</option>
+                                        <label for="idcourier_details" class="control-label mb-1">No Courier Available</label>
                                         <?php
                                     }
                                 ?>
-                            </select>
+                            <!-- </select> -->
                         </div>
                         <div id="show_review_courier">
                             <!-- REVIEW DETAILS COURIER -->
@@ -285,7 +288,7 @@ $(document).ready(function(){
     $("#new_address_option").hide();
     $("#show_review_courier").hide();
     
-    $("input[name$='selected_address']").click(function() {
+    $("#selected_address").change(function() {
         var test = $(this).val();
         if(test == 'new'){
             $("#new_address_option").show();
@@ -293,24 +296,5 @@ $(document).ready(function(){
             $("#new_address_option").hide();
         }
     }); 
-
-    $('#idcourier_details').on('change', function() {
-        // alert( this.value );
-        $("#show_review_courier").show();
-        $('#details_review_courier').remove();
-        if(this.value == 'none' || this.value == "" || this.value == "none"){
-            // alert('Please select courier!..');
-            console.log('Not found!..');
-        } else {
-            $.post(
-                "api/routes.php",
-                {id_courier: this.value,action:"get_review_courier",type:"review"},
-                function(data){ 
-                    $('#show_review_courier').append(data);
-                }
-            );
-        }
-      
-    });
 });
 </script>
