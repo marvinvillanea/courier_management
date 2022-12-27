@@ -35,6 +35,7 @@ include('./controller/Portal.php');
                 "disapproved_courier",
                 "inventory",
                 "users",
+                "blacklisted_courier",
             ],
             "users" =>[
                 "user_home",

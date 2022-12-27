@@ -35,6 +35,14 @@ if(isset($_GET["action"]) ){
             echo $approvalRegister;
     }
 
+    if($action == "getDetailsDisapprovedCourier"){
+        include('controller/ActionAdminClass.php');
+        $crud = new ActionAdminClass();
+        $approvalRegister = $crud->getDetailsDisApprovedCourier();
+        if($approvalRegister)
+            echo $approvalRegister;
+    }
+
     if($action == "get_details_courier"){
         include('controller/ActionAdminClass.php');
         $crud = new ActionAdminClass();
@@ -49,6 +57,22 @@ if(isset($_GET["action"]) ){
         $approvalRegister = $crud->get_details_users();
         if($approvalRegister)
             echo $approvalRegister;
+    }
+
+    if($action == "get_details_blacklist_courier"){
+        include('controller/ActionAdminClass.php');
+        $crud = new ActionAdminClass();
+        $approvalRegister = $crud->viewDetailsCourierBlacklist();
+        if($approvalRegister)
+            echo $approvalRegister;
+    }
+
+    if($action == "blacklist_courier"){
+        include('controller/ActionAdminClass.php');
+        $crud = new ActionAdminClass();
+        $blacklisting = $crud->blacklist_courier();
+        if($blacklisting)
+            echo $blacklisting;
     }
 
     if(isset($_POST["type"])){
