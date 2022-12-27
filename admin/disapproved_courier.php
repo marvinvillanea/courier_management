@@ -156,7 +156,7 @@
         // $('#parcel_modal_body').append('<div id="parcel_details">Name: Marvin villanea</div>');
         $.post(
             "api/routes.php",
-            {user_id: user_id,action:"get_details_courier"},
+            {user_id: user_id,action:"getDetailsDisapprovedCourier"},
             function(data){ 
                 // location.reload(true); 
                 $('#parcel_modal_body').append(data);

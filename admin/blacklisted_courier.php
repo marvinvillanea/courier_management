@@ -18,7 +18,7 @@
                     <div class="row">
                             <div class="col-md-12">
                                 <!-- DATA TABLE -->
-                                <h3 class="title-5 m-b-35">List of Active Courier</h3>
+                                <h3 class="title-5 m-b-35">List of Blacklisted Courier</h3>
                                 <div class="table-responsive table-responsive-data2">
                                     <table class="table table-data2" id="table_list">
                                         <thead>
@@ -32,7 +32,7 @@
                                                 $user_to_verify = $db->select("SELECT * FROM users 
                                                 INNER JOIN personal_info using(user_id)
                                                 INNER JOIN courier_details using(p_info_id)
-                                                where status = 1 and user_type = 3");
+                                                where status = 4 and user_type = 3");
                                                 if(count($user_to_verify) > 0){
                                                     foreach ($user_to_verify as $key => $value) {
                                                         ?>
@@ -122,7 +122,7 @@
         // $('#parcel_modal_body').append('<div id="parcel_details">Name: Marvin villanea</div>');
         $.post(
             "api/routes.php",
-            {user_id: user_id,action:"get_details_courier"},
+            {user_id: user_id,action:"get_details_blacklist_courier"},
             function(data){ 
                 // location.reload(true); 
                 $('#parcel_modal_body').append(data);
@@ -133,7 +133,7 @@
         // alert(user_id)
         $.post(
             "api/routes.php",
-            {user_id: user_id,act:"blacklist",action:"blacklist_courier"},
+            {user_id: user_id,act:"whitelist",action:"blacklist_courier"},
             function(data){ 
                 if(data == 'SUCCESS'){
                     location.reload(true);
