@@ -256,7 +256,8 @@ class CourierControllerClass {
       $server = $_SERVER['SERVER_NAME'];
       $port = $_SERVER['SERVER_PORT'] ? ':'.$_SERVER['SERVER_PORT'] : '';
     //   return $protocol.$server.$port;
-      return getenv('URL_HOST');     
+    //   return getenv('URL_HOST');     
+    return $protocol.$server;
     } 
 
     public function update_notify_courier(){
