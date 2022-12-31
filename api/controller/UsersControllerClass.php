@@ -105,7 +105,7 @@ class UsersControllerClass {
                 $details .= '<option value ="select">--Plase select rate--</option>';
                 $details .= '<option value ="1">Very Poor</option>';
                 $details .= '<option value ="2">Poor</option>';
-                $details .= '<option value ="3">Good</option>';
+                $details .= '<option value ="3">OK</option>';
                 $details .= '<option value ="4">Very Good</option>';
                 $details .= '<option value ="5">Excellent</option>';
                 $details .= '</select>';

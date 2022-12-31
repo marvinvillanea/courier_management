@@ -37,7 +37,7 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"]  == "POST") 
             include('./database/connection.php');
             include('./controller/Portal.php');
             $db = new DatabaseClass();
-            $data = $db->Select("SELECT * FROM users where email = ? and password = ? ", [$email, $password]);
+            $data = $db->Select("SELECT * FROM users where `status`  = 1 and email = ? and password = ? ", [$email, $password]);
             if(count($data) > 0) {
                 // $token = bin2hex(random_bytes(16));
                 $_SESSION["user_id"] =  $data[0]["user_id"];
