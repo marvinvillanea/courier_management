@@ -86,6 +86,15 @@
                                         <a href="index.php?page=disapproved_courier">
                                             <i class="fas fa-tachometer-alt"></i>Disapproved Courier</a>
                                     </div>
+                                     <div class="account-dropdown__item">
+                                        <a href="index.php?page=blacklisted_courier">
+                                            <i class="fas fa-tachometer-alt"></i>Blacklisted Courier</a>
+                                    </div>
+                                    <div class="account-dropdown__item">
+                                        <a href="index.php?page=inventory">
+                                        <i class="fas fa-tachometer-alt"></i>Number of Deliveries</a>
+                                    </div>
+                                    
                                     <div class="account-dropdown__item">
                                         <a href="index.php?page=users">
                                             <i class="fas fa-tachometer-alt"></i>Users</a>
