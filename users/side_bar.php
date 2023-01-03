@@ -58,10 +58,6 @@
                             <a href="index.php?page=unsccesfull_deliver">
                                 <i class="fas fa-tachometer-alt"></i>Unsuccessfull Delivery</a>
                         </li>
-                        <!-- <li>
-                            <a href="index.php?page=rate_courier">
-                                <i class="fas fa-tachometer-alt"></i>Rate Courier</a>
-                        </li> -->
                     </ul>
                 </li>
                 <li class="<?php if($_GET["page"] == 'list_nofity') {echo "active";}?>">
