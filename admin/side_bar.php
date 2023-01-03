@@ -24,6 +24,10 @@
                     <a href="index.php?page=disapproved_courier">
                         <i class="fas fa-tachometer-alt"></i>Disapproved Courier</a>
                 </li>
+                <li class="<?php if($_GET["page"] == 'blacklisted_courier') {echo "active";}?>" >
+                    <a href="index.php?page=blacklisted_courier">
+                        <i class="fas fa-tachometer-alt"></i>Blacklisted Courier</a>
+                </li>
                 <li class="<?php if($_GET["page"] == 'users') {echo "active";}?>" >
                     <a href="index.php?page=users">
                         <i class="fas fa-tachometer-alt"></i>Users</a>
