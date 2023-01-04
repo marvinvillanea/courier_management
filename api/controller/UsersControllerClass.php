@@ -101,7 +101,7 @@ class UsersControllerClass {
                     break;
                 }
             } else {
-                $details = '<select name="rate_type">';
+                $details = '<select name="rate_type" class="form-control">';
                 $details .= '<option value ="select">--Plase select rate--</option>';
                 $details .= '<option value ="1">Very Poor</option>';
                 $details .= '<option value ="2">Poor</option>';
