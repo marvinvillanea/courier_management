@@ -20,7 +20,7 @@ class CourierControllerClass {
 		try {
 			extract($_POST);
 			// $status = $name == "reject" ? 3 : 1;
-			$data = $this->db->select("select recepient_name,recepient_address,recepient_contact_no,parcel_description,type_delivery, pd.created_at,pd.status, pd.amount, sw.description, ps.description as status_parcel,
+			$data = $this->db->select("select comment,recepient_name,recepient_address,recepient_contact_no,parcel_description,type_delivery, pd.created_at,pd.status, pd.amount, sw.description, ps.description as status_parcel,
             concat(last_name,', ', first_name,' ', middle_name) full_name , pi.contact_no as sender_phone_number, address_sender,pd.idparcel_details, ps.id_status
             from parcel_details pd
             inner join personal_info pi using (user_id)
@@ -36,6 +36,7 @@ class CourierControllerClass {
                 11 => 'red',
                 7 => 'green',
                 12 => 'red',
+                13 => 'red',
             ];
             $status_color = array_key_exists($data[0]["id_status"], $status_color ) ? $status_color[$data[0]["id_status"]] : 'yellow';
             // $json_encode = json_encode($data[0]);
@@ -51,7 +52,8 @@ class CourierControllerClass {
             Delivery Type: '.$data[0]["type_delivery"].'<br><hr>
             Weight: '.$data[0]["description"].'<br><hr>
             Created at: '.$data[0]["created_at"].'<br><hr>
-            Status: <span style="color:'.$status_color.'">'.$data[0]["status_parcel"].'</span><br><hr>
+            Status: <span style="color:'.$status_color.'">'.$data[0]["status_parcel"].'</span><br><br>
+            Comment: <input type="text" name="comment" class="form-control" id="comment" value="'.$data[0]["comment"].'" disabled/><br><hr>
             Amount: '.$data[0]["amount"].'<br><hr>';
 
             $div = '<div id="parcel_details"><div class="modal-body">'.$div2.'</div><div class="modal-footer">
@@ -105,7 +107,7 @@ class CourierControllerClass {
         try {
 			extract($_POST);
 			// $status = $name == "reject" ? 3 : 1;
-			$data = $this->db->select("select recepient_name,recepient_address,recepient_contact_no,parcel_description,type_delivery, pd.created_at,pd.status, pd.amount, sw.description, ps.description as status_parcel,
+			$data = $this->db->select("select comment,recepient_name,recepient_address,recepient_contact_no,parcel_description,type_delivery, pd.created_at,pd.status, pd.amount, sw.description, ps.description as status_parcel,
             concat(last_name,', ', first_name,' ', middle_name) full_name , pi.contact_no as sender_phone_number, address_sender,pd.idparcel_details
             from parcel_details pd
             inner join personal_info pi using (user_id)
@@ -144,7 +146,8 @@ class CourierControllerClass {
             Update Status: <select name="status"> '.$option.' </select>
             <br><hr>
             Status: <span style="color:green">'.$data[0]["status_parcel"].'</span>
-            <br><hr>
+            <br><br>
+            Comment: <input type="text" name="comment" class="form-control" id="comment" value="'.$data[0]["comment"].'" /><br><hr>
             Upload Recipient: <input type="file" name="images" value="" id="recipient-image" accept="image/*" />
             <br><hr>
             Amount: '.$data[0]["amount"].'';
@@ -205,7 +208,7 @@ class CourierControllerClass {
             } else {
 
                 if($status != 7) {
-                    $data = $this->db->Update("update parcel_details SET status = ? WHERE idparcel_details = ? ", array($status,$parcel_details_id));
+                    $data = $this->db->Update("update parcel_details SET status = ?, comment = ? WHERE idparcel_details = ? ", array($status,$comment,$parcel_details_id));
                     
                     $get_details = $this->db->Select("select * from parcel_details where idparcel_details = ? limit 1", array($parcel_details_id));
                     $status_description = $this->db->Select("select * from parcel_status where id_status = ? limit 1", array($status));

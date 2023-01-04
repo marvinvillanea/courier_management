@@ -26,7 +26,7 @@
                                         <li class="list-inline-item seprate">
                                             <span>/</span>
                                         </li>
-                                        <li class="list-inline-item">Update Order</li>
+                                        <li class="list-inline-item">Defectives</li>
                                     </ul>
                                 </div>
                                 <!-- <button class="au-btn au-btn-icon au-btn--green">
@@ -55,7 +55,7 @@
                                 </thead>
                                 <tbody>
                                 <?php
-                                    $parcel = $db->select("SELECT * FROM parcel_details where idcourier_details = ? and status not in  (1,12,11,7,13) order by created_at desc", array($_SESSION["user_id"]));
+                                    $parcel = $db->select("SELECT * FROM parcel_details where idcourier_details = ? and status = 13 order by created_at desc ", array($_SESSION["user_id"]));
                                     if(count($parcel) > 0){
                                         foreach ($parcel as $key => $value) {
                                             ?>
@@ -65,7 +65,7 @@
                                                 <td>
                                                     <div class="table-data-feature">
                                                         <button class="item" data-toggle="tooltip" data-placement="top" title="View" type="button"  id="<?php echo $value["parcel_number"]; ?>" onclick="showModal(this.id)">
-                                                        <i class="zmdi zmdi-eye" style="color:green"></i>
+                                                            <i class="zmdi zmdi-eye" style="color:green"></i>
                                                         </button>
                                                     </div>
                                                 </td>
@@ -127,72 +127,38 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form  id="data_pass" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="type" value="courier" />
-            <input type="hidden" name="action" value="on_going_transaction" />
-            <div id="parcel_modal_body">
-            
+            <div class="modal-body" id="parcel_modal_body">
+                <div id="parcel_details"></div>
             </div>
-            
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary" id="parcel_updates" name="confirm">Confirm</button>
+            <div id="modal-footer_cancel">
+                <div id="parcel_details2">
+                </div>
             </div>
-            </form>
         </div>
     </div>
 </div>
 
 <script>
-    function showModal(parcel_ID){
+     function showModal(parcel_ID){
     //    $('#scrollmodal').toggle();
     //    alert('dafdaf');
         $('#scrollmodal').modal('show')
         $('#parcel_no_value').remove();
         $('#parcel_details').remove();
+        $('#parcel_details2').remove();
 
         $('#pacel_no').append('<span id="parcel_no_value">Order #: '+ parcel_ID +'</span>');
         // $('#parcel_modal_body').append('<div id="parcel_details">Name: Marvin villanea</div>');
         $.post(
             "api/routes.php",
-            {parcel_ID: parcel_ID,action:"get_details_parcel_updates",type:"courier"},
+            {parcel_ID: parcel_ID,action:"get_details_parcel",type:"courier"},
             function(data){ 
                 // location.reload(true); 
                 $('#parcel_modal_body').append(data);
+                $('.modal-footer').remove();
+                $('#modal-footer_cancel').append('<div id="parcel_details2"><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button></div></div>');
             }
         );
     }
 
-  
-    
-    $(document).ready(function (e) {
-        $("form#data_pass").on('submit',(function(e) {
-           
-        e.preventDefault();
-
-       
-        $.ajax({
-            url:  "api/routes.php",
-        type: "POST",
-        data:  new FormData(this),
-        contentType: false,
-                cache: false,
-        processData:false,
-        beforeSend : function()
-        {
-            //$("#preview").fadeOut();
-            $("#err").fadeOut();
-        },
-        success: function(data)
-            {
-                location.reload(true); 
-                // alert(data);
-            },
-        error: function(e) 
-        {
-        //  $("#err").html(e).fadeIn();
-        }          
-            });
-        }));
-    });
 </script>

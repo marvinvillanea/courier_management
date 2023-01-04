@@ -91,6 +91,13 @@ if(isset($_GET["action"]) ){
                     echo $details;
             }
 
+            if($action == "get_details_parcel_defective"){
+                $crud = new UsersControllerClass();
+                $details = $crud->getDetailsParceldefective();
+                if($details)
+                    echo $details;
+            }
+
             if($action == "rate_courier") {
                 $crud = new UsersControllerClass();
                 $details = $crud->rate_courier();
