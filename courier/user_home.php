@@ -177,7 +177,13 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"]  == "POST") 
                                         
                                         
                                         <div class="mt-5 d-flex justify-content-between align-items-center">
-                                            <h5 class="review-stat">Excellent</h5>
+                                            <h5 class="review-stat">Excellent (<?php $data_rate_5 = $db->Select("select * from rate_courier where courier_id = ? and rate_type = 5 ", array($_SESSION["user_id"])) ;
+                                                    if(count($data_rate_5) != 0){
+                                                        echo count($data_rate_5);
+                                                    }else{
+                                                        echo 0;
+                                                    }
+                                            ?>)</h5>
                                             <div class="small-ratings">
                                                     <i class="fa fa-star rating-color"></i>&nbsp;&nbsp;
                                                     <i class="fa fa-star rating-color"></i>&nbsp;&nbsp;
@@ -188,7 +194,13 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"]  == "POST") 
                                         </div>
                                         
                                         <div class="mt-1 d-flex justify-content-between align-items-center">
-                                            <h5 class="review-stat">Good</h5>
+                                            <h5 class="review-stat">Very Good (<?php $data_rate_4 = $db->Select("select * from rate_courier where courier_id = ? and rate_type = 4 ", array($_SESSION["user_id"])) ;
+                                                    if(count($data_rate_4) != 0){
+                                                        echo count($data_rate_4);
+                                                    }else{
+                                                        echo 0;
+                                                    }
+                                            ?>)</h5>
                                             <div class="small-ratings">
                                                     <i class="fa fa-star rating-color"></i>&nbsp;&nbsp;
                                                     <i class="fa fa-star rating-color"></i>&nbsp;&nbsp;
@@ -200,7 +212,13 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"]  == "POST") 
                                         
                                         
                                         <div class="mt-1 d-flex justify-content-between align-items-center">
-                                            <h5 class="review-stat">OK</h5>
+                                            <h5 class="review-stat">Good (<?php $data_rate_3 = $db->Select("select * from rate_courier where courier_id = ? and rate_type = 3 ", array($_SESSION["user_id"])) ;
+                                                    if(count($data_rate_3) != 0){
+                                                        echo count($data_rate_3);
+                                                    }else{
+                                                        echo 0;
+                                                    }
+                                            ?>)</h5>
                                             <div class="small-ratings">
                                                     <i class="fa fa-star rating-color"></i>&nbsp;&nbsp;
                                                     <i class="fa fa-star rating-color"></i>&nbsp;&nbsp;
@@ -212,7 +230,13 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"]  == "POST") 
                                         
                                         
                                         <div class="mt-1 d-flex justify-content-between align-items-center">
-                                            <h5 class="review-stat">Poor</h5>
+                                            <h5 class="review-stat">Poor (<?php $data_rate_2 = $db->Select("select * from rate_courier where courier_id = ? and rate_type = 2 ", array($_SESSION["user_id"])) ;
+                                                    if(count($data_rate_2) != 0){
+                                                        echo count($data_rate_2);
+                                                    }else{
+                                                        echo 0;
+                                                    }
+                                            ?>)</h5>
                                             <div class="small-ratings">
                                                     <i class="fa fa-star rating-color"></i>&nbsp;&nbsp;
                                                     <i class="fa fa-star rating-color"></i>&nbsp;&nbsp;
@@ -224,7 +248,13 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"]  == "POST") 
                                         
                                         
                                         <div class="mt-1 d-flex justify-content-between align-items-center">
-                                            <h5 class="review-stat">Very bad</h5>
+                                            <h5 class="review-stat">Very bad (<?php $data_rate_1 = $db->Select("select * from rate_courier where courier_id = ? and rate_type = 1 ", array($_SESSION["user_id"])) ;
+                                                    if(count($data_rate_1) != 0){
+                                                        echo count($data_rate_1);
+                                                    }else{
+                                                        echo 0;
+                                                    }
+                                            ?>)</h5>
                                             <div class="small-ratings">
                                                     <i class="fa fa-star rating-color"></i>&nbsp;&nbsp;
                                                     <i class="fa fa-star"></i>&nbsp;&nbsp;

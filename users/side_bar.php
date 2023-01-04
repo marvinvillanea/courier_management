@@ -24,7 +24,7 @@
                 </li>
                 <li class="<?php if($_GET["page"] == 'parcel') {echo "active";}?>">
                     <a class="js-arrow" href="#">
-                        <i class="fas  fa-list"></i>Parcels
+                        <i class="fas  fa-list"></i>Orders
                         <span class="arrow">
                             <i class="fas fa-angle-down"></i>
                         </span>

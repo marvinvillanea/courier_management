@@ -34,7 +34,7 @@
                 </li>
                 <li class="<?php if($_GET["page"] == 'tracking_parcel') {echo "active";}?>" >
                     <a href="index.php?page=tracking_parcel">
-                        <i class="fas fa-tachometer-alt"></i>Tracking Parcel</a>
+                        <i class="fas fa-tachometer-alt"></i>Tracking Order</a>
                 </li>
                 <li class="<?php if($_GET["page"] == 'inventory') {echo "active";}?>" >
                     <a href="index.php?page=inventory">

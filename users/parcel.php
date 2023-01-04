@@ -21,12 +21,12 @@
                                     <span class="au-breadcrumb-span">You are here:</span>
                                     <ul class="list-unstyled list-inline au-breadcrumb__list">
                                         <li class="list-inline-item active">
-                                            <a href="#">Parcels</a>
+                                            <a href="#">Orders</a>
                                         </li>
                                         <li class="list-inline-item seprate">
                                             <span>/</span>
                                         </li>
-                                        <li class="list-inline-item">Add Parcel</li>
+                                        <li class="list-inline-item">Add Order</li>
                                     </ul>
                                 </div>
                                 <!-- <button class="au-btn au-btn-icon au-btn--green">
@@ -74,40 +74,32 @@
                             <input id="cc-address" name="cc-address" type="text" class="form-control cc-address valid" value="<?php echo $information["street"].", ".$information["barangay"]. ", ".$information["city"]. ", ".$information["province"]. ", ".$information["zip_code"] ;  ?>" disabled>
                         </div> -->
                         <div class="form-group">
-                            <label class=" form-control-label">Address:</label>
-                                <div class="form-check">
-                                    <!-- <select name="selectAdd" id="selectAdd">
-                                        <div class="radio">
-                                            <label for="radio1" class="form-check-label " >
-                                                <input type="radio" id="radio1" name="selected_address" value="<?php echo $information["street"].", ".$information["barangay"]. ", ".$information["city"]. ", ".$information["province"]. ", ".$information["zip_code"] ;  ?>" checked class="form-check-input"><?php echo $information["street"].", ".$information["barangay"]. ", ".$information["city"]. ", ".$information["province"]. ", ".$information["zip_code"] ;  ?>
-                                            </label>
-                                        </div>
-                                    </select> -->
+                            <label class="control-label mb-1">Address:</label>
+                                <!-- <select name="selectAdd" id="selectAdd">
                                     <div class="radio">
-                                        <label for="radio1" class="form-check-label">
-                                        <select name="selected_address" id="selected_address" class="form-control">
-                                    <?php
-                                        $list_optional_address = getaddressOptional($db);
-                                        if(count($list_optional_address) > 0){
-                                            foreach ($list_optional_address as $key => $value) {
-                                                ?>
-                                                            <option id="selected_address" name="selected_address" value="<?php echo $value["address"] ;  ?>"  class="form-check-input">&nbsp; <?php echo $value["address"] ;  ?>
-                                                       
-                                                    </div>
-                                                <?php
-                                            }
-                                            
-                                        } 
-                                    ?> 
-                                    <div class="radio">
-                                        <option id="selected_address" name="selected_address" value="new"  class="form-check-input">&nbsp; Add other Address
-                                            <!-- <input type="radio" id="radio3" name="selected_address" value="new"  class="form-check-input">&nbsp; Add other Address -->
-                                            <!-- <input id="cc-other_address" name="address_sender" type="text" class="form-control " value="" placeholder="Other address"> -->
-                                        </div>
-                                    </label>
-                                    </select>
-                                    
-                                </div>
+                                        <label for="radio1" class="form-check-label " >
+                                            <input type="radio" id="radio1" name="selected_address" value="<?php echo $information["street"].", ".$information["barangay"]. ", ".$information["city"]. ", ".$information["province"]. ", ".$information["zip_code"] ;  ?>" checked class="form-check-input"><?php echo $information["street"].", ".$information["barangay"]. ", ".$information["city"]. ", ".$information["province"]. ", ".$information["zip_code"] ;  ?>
+                                        </label>
+                                    </div>
+                                </select> -->
+                                    <select name="selected_address" id="selected_address" class="form-control">
+                                <?php
+                                    $list_optional_address = getaddressOptional($db);
+                                    if(count($list_optional_address) > 0){
+                                        foreach ($list_optional_address as $key => $value) {
+                                            ?>
+                                                        <option id="selected_address" name="selected_address" value="<?php echo $value["address"] ;  ?>"  class="form-check-input">&nbsp; <?php echo $value["address"] ;  ?>
+                                                    
+                                            <?php
+                                        }
+                                        
+                                    } 
+                                ?> 
+                                    <option id="selected_address" name="selected_address" value="new"  class="form-check-input">&nbsp; Add other Address
+                                        <!-- <input type="radio" id="radio3" name="selected_address" value="new"  class="form-check-input">&nbsp; Add other Address -->
+                                        <!-- <input id="cc-other_address" name="address_sender" type="text" class="form-control " value="" placeholder="Other address"> -->
+                                </label>
+                                </select>
                         </div>
                         <div id="new_address_option">
                             <div class="form-group">
@@ -146,19 +138,27 @@
                             </div>  
                             <div class="form-group">
                                 <label for="zone" class="control-label mb-1">Zone #</label>
-                                <input id="zone" name="zone" type="text" class="form-control " value="<?php echo $information["zone"]?>" >
+                                    <select name="zone" id="zone" class="form-control">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                    </select>
                             </div>  
                         </div>
                         <div class="form-group">
                             <?php 
                                 $transaction_id = str_replace(".","",microtime(true)).rand(000,999);
                             ?>
-                            <label for="parcel_number" class="control-label mb-1">Parcel number</label>
+                            <label for="parcel_number" class="control-label mb-1">Order number</label>
                             <input id="parcel_number" name="parcel_number" type="text" class="form-control " value="<?php echo $transaction_id ?>" readonly >
                             <!-- <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span> -->
                         </div>
                         <div class="form-group">
-                            <label for="parcel_description" class="control-label mb-1">Parcel Description</label>
+                            <label for="parcel_description" class="control-label mb-1">Order Description</label>
                             <input id="parcel_description" name="parcel_description" type="text" class="form-control " value="">
                             <!-- <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span> -->
                         </div>
@@ -185,8 +185,53 @@
                        
                         <div class="form-group has-success">
                             <label for="recepient_address" class="control-label mb-1">Address</label>
-                            <input id="recepient_address" name="recepient_address" type="text" class="form-control cc-name valid"  >
-                            <!-- <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span> -->
+                            <!-- <input id="recepient_address" name="recepient_address" type="text" class="form-control cc-name valid"  > -->
+                            <div class="form-group">
+                                <label for="Province" class="control-label mb-1">Province</label>
+                                <input id="receiver_province" name="receiver_province" type="text" class="form-control" placeholder="Province" required>
+                            </div>  
+                            <div class="form-group">
+                                <label for="city" class="control-label mb-1">City</label>
+                                <input id="receiver_city" name="receiver_city" type="text" class="form-control " placeholder="City" required>
+                            </div>  
+                            <div class="form-group">
+                                <label for="zipcode" class="control-label mb-1">Zip Code</label>
+                                <input id="receiver_zipcode" name="receiver_zipcode" type="text" class="form-control " placeholder="Zip Code" required>
+                            </div>  
+                            <div class="form-group">
+                                <label for="barangay" class="control-label mb-1">Barangay</label>
+                                <select name="receiver_barangay" id="receiver_barangay" class="form-control">
+                                    <?php 
+                                        $db = new DatabaseClass();
+                                        $data = $db->Select("SELECT * FROM barangay order by name asc  ");
+                                        $option = '';
+                                        if(count($data) > 0) {
+                                        foreach ($data as $key => $value) {
+                                            $selected = '';
+                                            if ($value["name"] == $information["barangay"]){
+                                                $selected = 'selected';
+                                            }
+                                            $option .= "<option value='".$value["name"]."' ".$selected.">".$value["name"]."</option>";
+                                        }
+                                        echo $option;
+                                        } else {
+                                        echo "<option>N/A</option>";
+                                        }
+                                    ?>
+                                </select>
+                            </div>  
+                            <div class="form-group">
+                                <label for="zone" class="control-label mb-1">Zone #</label>
+                                    <select name="receiver_zone" id="receiver_zone" class="form-control">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                    </select>
+                            </div> 
                         </div>
                         <div class="card-title">
                             <h3 class="text-center title-2">Delivery Information</h3>

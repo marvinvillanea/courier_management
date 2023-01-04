@@ -92,7 +92,7 @@
                                     </div>
                                     <div class="account-dropdown__item">
                                         <a href="index.php?page=tracking_parcel">
-                                            <i class="fas fa-tachometer-alt"></i>Tracking Parcel</a>
+                                            <i class="fas fa-tachometer-alt"></i>Tracking Order</a>
                                     </div>
                                 </div>
                                 <div class="account-dropdown__footer">
