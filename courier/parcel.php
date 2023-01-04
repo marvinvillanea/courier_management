@@ -21,12 +21,12 @@
                                     <span class="au-breadcrumb-span">You are here:</span>
                                     <ul class="list-unstyled list-inline au-breadcrumb__list">
                                         <li class="list-inline-item active">
-                                            <a href="#">Parcels</a>
+                                            <a href="#">Orders</a>
                                         </li>
                                         <li class="list-inline-item seprate">
                                             <span>/</span>
                                         </li>
-                                        <li class="list-inline-item">Add Parcel</li>
+                                        <li class="list-inline-item">Add Order</li>
                                     </ul>
                                 </div>
                                 <!-- <button class="au-btn au-btn-icon au-btn--green">
@@ -41,7 +41,7 @@
         
         <div class="col-lg-12" style="margin-top:20px;">
             <div class="card">
-                <div class="card-header">Add Parcel</div>
+                <div class="card-header">Add Order</div>
                 <div class="card-body">
                     <div class="card-title">
                         <h3 class="text-center title-2">Sender Information</h3>
@@ -105,12 +105,12 @@
                         </div>
                        
                         <div class="form-group">
-                            <label for="parcel_number" class="control-label mb-1">Parcel number</label>
+                            <label for="parcel_number" class="control-label mb-1">Order number</label>
                             <input id="parcel_number" name="parcel_number" type="tel" class="form-control " value="" >
                             <!-- <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span> -->
                         </div>
                         <div class="form-group">
-                            <label for="parcel_description" class="control-label mb-1">Parcel Description</label>
+                            <label for="parcel_description" class="control-label mb-1">Order Description</label>
                             <input id="parcel_description" name="parcel_description" type="tel" class="form-control " value="">
                             <!-- <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span> -->
                         </div>

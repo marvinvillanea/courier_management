@@ -140,7 +140,7 @@
                     </li>
                     <li class="">
                         <a href="#">
-                            <i class="fas fa-tachometer-alt"></i>Tracking Parcel</a>
+                            <i class="fas fa-tachometer-alt"></i>Tracking Order</a>
                     </li>
                     <li class="">
                         <a href="#">

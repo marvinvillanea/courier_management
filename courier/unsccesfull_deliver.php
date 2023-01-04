@@ -21,7 +21,7 @@
                                     <span class="au-breadcrumb-span">You are here:</span>
                                     <ul class="list-unstyled list-inline au-breadcrumb__list">
                                         <li class="list-inline-item active">
-                                            <a href="#">Parcels</a>
+                                            <a href="#">Orders</a>
                                         </li>
                                         <li class="list-inline-item seprate">
                                             <span>/</span>
@@ -49,7 +49,7 @@
                                 <thead>
                                     <tr>
                                         <th>Date</th>
-                                        <th>Parcel #</th>
+                                        <th>Order #</th>
                                         <th></th>
                                     </tr>
                                 </thead>

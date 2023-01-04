@@ -47,7 +47,7 @@ class CourierControllerClass {
             Name: '.ucwords($data[0]["recepient_name"]).'<br><hr>
             Address: '.ucwords($data[0]["recepient_address"]).'<br><hr>
             Contact No: '.$data[0]["recepient_contact_no"].'<br><hr>
-            Parcel Description: '.$data[0]["parcel_description"].'<br><hr>
+            Order Description: '.$data[0]["parcel_description"].'<br><hr>
             Delivery Type: '.$data[0]["type_delivery"].'<br><hr>
             Weight: '.$data[0]["description"].'<br><hr>
             Created at: '.$data[0]["created_at"].'<br><hr>
@@ -137,7 +137,7 @@ class CourierControllerClass {
             Name: '.ucwords($data[0]["recepient_name"]).'<br><hr>
             Address: '.ucwords($data[0]["recepient_address"]).'<br><hr>
             Contact No: '.$data[0]["recepient_contact_no"].'<br><hr>
-            Parcel Description: '.$data[0]["parcel_description"].'<br><hr>
+            Order Description: '.$data[0]["parcel_description"].'<br><hr>
             Delivery Type: '.$data[0]["type_delivery"].'<br><hr>
             Weight: '.$data[0]["description"].'<br><hr>
             Created at: '.$data[0]["created_at"].'<br><hr>
@@ -220,7 +220,7 @@ class CourierControllerClass {
                         $text = "Good day, Ma'am/Sir ".ucwords($get_details[0]["recepient_name"])." The parcel # ".$get_details[0]["parcel_number"]." ".$get_details[0]["parcel_description"]." will be Arrived today. Please prepare the exact amount. Total : ".$get_details[0]["amount"]." Thank you have a nice day!..";
                     } else {
                         $phone_number = '+63'.$get_details[0]["recepient_contact_no"];
-                        $text = "Good day, Ma'am/Sir ".ucwords($get_details[0]["recepient_name"]).". ".$status_description[0]["details"]." Parcel #: ".$get_details[0]["parcel_number"].". Please prepare the exact amount. Total : ".$get_details[0]["amount"]." Thank you have a nice day!..";
+                        $text = "Good day, Ma'am/Sir ".ucwords($get_details[0]["recepient_name"]).". ".$status_description[0]["details"]." Order #: ".$get_details[0]["parcel_number"].". Please prepare the exact amount. Total : ".$get_details[0]["amount"]." Thank you have a nice day!..";
                     }
 
                     try {

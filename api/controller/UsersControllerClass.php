@@ -80,7 +80,7 @@ class UsersControllerClass {
                     $comment = 'value="No review/feedback"';
                 }
             } else {
-                $comment = 'placeholder="Enter Feedback/Review"';
+                $comment = 'placeholder="Enter Feedback/Review" required';
             }
             if(count($get_Rate) > 0 ){
                 switch ($get_Rate[0]['rate_type']){

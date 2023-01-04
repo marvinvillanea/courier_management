@@ -187,7 +187,16 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"]  == "POST") 
                                 </div>
                                 <div class="form-group">
                                     <label>Zone</label>
-                                    <input class="au-input au-input--full" type="text" name="zone_number" id="zone_number" placeholder="Zone #">
+                                    <select name="zone_number" id="zone_number" class="form-control">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7"></option>
+                                    </select>
+                                    <!-- <input class="au-input au-input--full" type="text" name="zone_number" id="zone_number" placeholder="Zone #"> -->
                                 </div>
                                 <div class="form-group">
                                     <label>Landmark</label>
