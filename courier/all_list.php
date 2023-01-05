@@ -26,7 +26,7 @@
                                         <li class="list-inline-item seprate">
                                             <span>/</span>
                                         </li>
-                                        <li class="list-inline-item">List Parcel</li>
+                                        <li class="list-inline-item">List Order</li>
                                     </ul>
                                 </div>
                                 <!-- <button class="au-btn au-btn-icon au-btn--green">
@@ -49,7 +49,7 @@
                                 <thead>
                                     <tr>
                                         <th>Date</th>
-                                        <th>Parcel #</th>
+                                        <th>Order #</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -147,7 +147,7 @@
         $('#parcel_details').remove();
         $('#parcel_details2').remove();
 
-        $('#pacel_no').append('<span id="parcel_no_value">Parcel #: '+ parcel_ID +'</span>');
+        $('#pacel_no').append('<span id="parcel_no_value">Order #: '+ parcel_ID +'</span>');
         // $('#parcel_modal_body').append('<div id="parcel_details">Name: Marvin villanea</div>');
         $.post(
             "api/routes.php",

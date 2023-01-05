@@ -184,7 +184,7 @@ function addParcelUsers($db){
         } else {
             $address_sender  = $selected_address;
         }
-
+        $recepient_address = ' '.$receiver_zone.' '.$receiver_barangay.', '.$receiver_city. ', '.$receiver_province.' '.$receiver_zipcode.' ';
         $get_parcel = $db->SELECT("select * from parcel_details where parcel_number = ? ", [$parcel_number]);
         if(count($get_parcel) > 0){
             echo "FAILED";
@@ -202,7 +202,7 @@ function addParcelUsers($db){
                 $address_sender,
                 $parcel_description
             ]);
-            $description = "You got New Parcel # ".$parcel_number." ".date('y-m-d h:m:s');
+            $description = "You got New Order # ".$parcel_number." ".date('y-m-d h:m:s');
             $db->Insert("INSERT INTO courier_notify (`user_id`,`description`) VALUES (?,?)", [
                 $idcourier_details,
                 $description

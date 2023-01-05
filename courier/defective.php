@@ -1,5 +1,5 @@
 
-<div class="page-wrapper">
+<div class="page-wrapper" >
     
     <!-- SIDE BAR MOBILE AND DESKTOP -->
     <?php include('./courier/side_bar.php');?>
@@ -26,7 +26,7 @@
                                         <li class="list-inline-item seprate">
                                             <span>/</span>
                                         </li>
-                                        <li class="list-inline-item">Unsuccessfull Delivery Attempt</li>
+                                        <li class="list-inline-item">Defectives</li>
                                     </ul>
                                 </div>
                                 <!-- <button class="au-btn au-btn-icon au-btn--green">
@@ -55,7 +55,7 @@
                                 </thead>
                                 <tbody>
                                 <?php
-                                    $parcel = $db->select("SELECT * FROM parcel_details where idcourier_details = ? and status = 11 order by created_at desc ", array($_SESSION["user_id"]));
+                                    $parcel = $db->select("SELECT * FROM parcel_details where idcourier_details = ? and status = 13 order by created_at desc ", array($_SESSION["user_id"]));
                                     if(count($parcel) > 0){
                                         foreach ($parcel as $key => $value) {
                                             ?>
@@ -65,7 +65,7 @@
                                                 <td>
                                                     <div class="table-data-feature">
                                                         <button class="item" data-toggle="tooltip" data-placement="top" title="View" type="button"  id="<?php echo $value["parcel_number"]; ?>" onclick="showModal(this.id)">
-                                                        <i class="zmdi zmdi-eye" style="color:green"></i>
+                                                            <i class="zmdi zmdi-eye" style="color:green"></i>
                                                         </button>
                                                     </div>
                                                 </td>
@@ -147,7 +147,7 @@
         $('#parcel_details').remove();
         $('#parcel_details2').remove();
 
-        $('#pacel_no').append('<span id="parcel_no_value">Parcel #: '+ parcel_ID +'</span>');
+        $('#pacel_no').append('<span id="parcel_no_value">Order #: '+ parcel_ID +'</span>');
         // $('#parcel_modal_body').append('<div id="parcel_details">Name: Marvin villanea</div>');
         $.post(
             "api/routes.php",

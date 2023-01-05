@@ -24,7 +24,7 @@
                 </li>
                 <li class="<?php if($_GET["page"] == 'parcel') {echo "active";}?>">
                     <a class="js-arrow" href="#">
-                        <i class="fas  fa-list"></i>Parcels
+                        <i class="fas  fa-list"></i>Orders
                         <span class="arrow">
                             <i class="fas fa-angle-down"></i>
                         </span>
@@ -55,13 +55,13 @@
                                 <i class="fas fa-tachometer-alt"></i>Delivered</a>
                         </li>
                         <li>
+                            <a href="index.php?page=defective">
+                                <i class="fas fa-tachometer-alt"></i>Defective</a>
+                        </li>
+                        <li>
                             <a href="index.php?page=unsccesfull_deliver">
                                 <i class="fas fa-tachometer-alt"></i>Unsuccessfull Delivery</a>
                         </li>
-                        <!-- <li>
-                            <a href="index.php?page=rate_courier">
-                                <i class="fas fa-tachometer-alt"></i>Rate Courier</a>
-                        </li> -->
                     </ul>
                 </li>
                 <li class="<?php if($_GET["page"] == 'list_nofity') {echo "active";}?>">

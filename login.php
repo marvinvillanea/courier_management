@@ -37,7 +37,7 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"]  == "POST") 
             include('./database/connection.php');
             include('./controller/Portal.php');
             $db = new DatabaseClass();
-            $data = $db->Select("SELECT * FROM users where `status`  = 1 and email = ? and password = ? ", [$email, $password]);
+            $data = $db->Select("SELECT * FROM users where status = 1 and email = ? and password = ? ", [$email, $password]);
             if(count($data) > 0) {
                 // $token = bin2hex(random_bytes(16));
                 $_SESSION["user_id"] =  $data[0]["user_id"];
@@ -49,7 +49,12 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"]  == "POST") 
                     header("location:index.php?page=home");
                 }
             }else {
-                $message = "Wrong credentails. Please try it again!";
+                $data = $db->Select("SELECT * FROM users where email = ? and password = ? ", [$email, $password]);
+                if(count($data) > 0){
+                    $message = "You Account has been disabled!. Please Contact the Management!";
+                }else{
+                    $message = "Wrong credentails. Please try it again!";
+                }
             }
         }
     }

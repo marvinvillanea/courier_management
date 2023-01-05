@@ -47,6 +47,7 @@ include('./controller/Portal.php');
                 "on_process",
                 "denied",
                 "delivered",
+                "defective",
                 "unsccesfull_deliver",
                 "list_nofity",
             ],
@@ -57,6 +58,7 @@ include('./controller/Portal.php');
                 "parcel_status",
                 "denied",
                 "delivered",
+                "defective",
                 "unsccesfull_deliver",
                 "list_nofity",
             ]

@@ -24,7 +24,7 @@
                 </li>
                 <li class="<?php if($_GET["page"] == 'parcel') {echo "active";}?>">
                     <a class="js-arrow" href="#">
-                        <i class="fas  fa-list"></i>Parcels
+                        <i class="fas  fa-list"></i>Orders
                         <span class="arrow">
                             <i class="fas fa-angle-down"></i>
                         </span>
@@ -32,7 +32,7 @@
                     <ul class="list-unstyled navbar__sub-list js-sub-list">
                         <li>
                             <a href="index.php?page=new_parcel">
-                                <i class="fas fa-tachometer-alt"></i>New Request</a>
+                                <i class="fas fa-tachometer-alt"></i>New Order</a>
                         </li>
                         <li>
                             <a href="index.php?page=all_list">
@@ -49,6 +49,10 @@
                         <li>
                             <a href="index.php?page=delivered">
                                 <i class="fas fa-tachometer-alt"></i>Delivered</a>
+                        </li>
+                        <li>
+                            <a href="index.php?page=defective">
+                                <i class="fas fa-tachometer-alt"></i>Defective</a>
                         </li>
                         <li>
                             <a href="index.php?page=unsccesfull_deliver">

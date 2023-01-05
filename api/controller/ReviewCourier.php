@@ -105,7 +105,7 @@
                     </div>
                     
                     <div class="mt-1 d-flex justify-content-between align-items-center">
-                        <h5 class="review-stat">Good</h5>
+                        <h5 class="review-stat">Very Good</h5>
                         <div class="small-ratings">
                         <?php $data_rate_5 = $db->Select("select * from rate_courier where courier_id = ? and rate_type = 4 ", array($id_courier)) ;
                             if(count($data_rate_5)>0){
@@ -133,7 +133,7 @@
                     
                     
                     <div class="mt-1 d-flex justify-content-between align-items-center">
-                        <h5 class="review-stat">OK</h5>
+                        <h5 class="review-stat">Good</h5>
                         <div class="small-ratings">
                         <?php $data_rate_5 = $db->Select("select * from rate_courier where courier_id = ? and rate_type = 3 ", array($id_courier)) ;
                             if(count($data_rate_5)>0){
