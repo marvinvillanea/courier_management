@@ -63,7 +63,7 @@ class CourierControllerClass {
             </div></div>';
 			echo $div;
 		} catch(\Exception $e) {
-			echo "FAILED";
+			echo "FAILED". $e->getMessage();
 		}
 		
 	}

@@ -138,6 +138,10 @@
                                         <i class="fas fa-tachometer-alt"></i>Delivered</a>
                                 </li>
                                 <li>
+                                    <a href="index.php?page=defective">
+                                        <i class="fas fa-tachometer-alt"></i>Defective</a>
+                                </li>
+                                <li>
                                     <a href="index.php?page=unsccesfull_deliver">
                                         <i class="fas fa-tachometer-alt"></i>Unsuccessfull Delivery</a>
                                 </li>

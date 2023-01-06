@@ -20,8 +20,8 @@ class UserDefinedMessageSubscriptionList extends ListResource {
      * Construct the UserDefinedMessageSubscriptionList
      *
      * @param Version $version Version that contains the resource
-     * @param string $accountSid Account Sid.
-     * @param string $callSid Call Sid.
+     * @param string $accountSid Account SID.
+     * @param string $callSid Call SID.
      */
     public function __construct(Version $version, string $accountSid, string $callSid) {
         parent::__construct($version);
@@ -36,19 +36,18 @@ class UserDefinedMessageSubscriptionList extends ListResource {
      * Create the UserDefinedMessageSubscriptionInstance
      *
      * @param string $callback The URL we should call to send user defined messages.
-     * @param string $method HTTP method used with the callback.
      * @param array|Options $options Optional Arguments
      * @return UserDefinedMessageSubscriptionInstance Created
      *                                                UserDefinedMessageSubscriptionInstance
      * @throws TwilioException When an HTTP error occurs.
      */
-    public function create(string $callback, string $method, array $options = []): UserDefinedMessageSubscriptionInstance {
+    public function create(string $callback, array $options = []): UserDefinedMessageSubscriptionInstance {
         $options = new Values($options);
 
         $data = Values::of([
             'Callback' => $callback,
-            'Method' => $method,
             'IdempotencyKey' => $options['idempotencyKey'],
+            'Method' => $options['method'],
         ]);
 
         $payload = $this->version->create('POST', $this->uri, [], $data);
@@ -64,7 +63,7 @@ class UserDefinedMessageSubscriptionList extends ListResource {
     /**
      * Constructs a UserDefinedMessageSubscriptionContext
      *
-     * @param string $sid User Defined Message Subscription Sid
+     * @param string $sid User Defined Message Subscription SID.
      */
     public function getContext(string $sid): UserDefinedMessageSubscriptionContext {
         return new UserDefinedMessageSubscriptionContext(

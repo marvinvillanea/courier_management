@@ -145,7 +145,7 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"]  == "POST") 
                                     <div class="card p-3">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="ratings">
-                                            <?php $data_rate = $db->Select("select *,count(*) count,  CAST(sum(rate_type)/count(*) AS DECIMAL(5,1)) as rate_average from rate_courier where courier_id = ? ", array($_SESSION["user_id"])) ;
+                                            <?php $data_rate = $db->Select("select  count(*) total_count,  CAST(sum(rate_type)/count(*) AS DECIMAL(5,1)) as rate_average from rate_courier where courier_id = ? ", array($_SESSION["user_id"])) ;
                                              if(count($data_rate)>0){
                                                 $stars = $data_rate[0]['rate_average'];
                                                 $stars = $stars == 0 ? $stars + 1 : $stars;
@@ -159,7 +159,7 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"]  == "POST") 
                                                 }
                                                 ?>
                                             </div>
-                                            <h5 class="review-count">(<?php echo $data_rate[0]['rate_average'] ?>) <?php echo $data_rate[0]['count'];?> Reviews</h5>
+                                            <h5 class="review-count">(<?php echo $data_rate[0]['rate_average'] ?>) <?php echo $data_rate[0]['total_count'];?> Reviews</h5>
                                             <?php
                                              } else {
                                                 ?>

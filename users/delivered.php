@@ -175,6 +175,32 @@
     </div>
 </div>
 
+
+<!-- modal scroll -->
+<div class="modal fade" id="defective_items" tabindex="-1" role="dialog" aria-labelledby="scrollmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="scrollmodalLabel" >
+                    <div id="pacel_no_2">
+                         <span id="parcel_no_value_defective"></span>
+                    </div>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form  id="parce_update_defective" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="type" value="users" />
+            <input type="hidden" name="action" value="stor_defective_items" />       
+            <div class="modal-body" id="parcel_modal_body_defective">
+                <div id="parcel_details_defectives"></div>
+            </div>
+            </form>
+            
+        </div>
+    </div>
+</div>
 <script>
     function showModal(parcel_ID){
     //    $('#scrollmodal').toggle();
@@ -191,6 +217,23 @@
             function(data){ 
                 // location.reload(true); 
                 $('#parcel_modal_body').append(data);
+            }
+        );
+    }
+
+
+    function defectivesModal(parcel_ID){
+        $('#defective_items').modal('show')
+        $('#parcel_no_value_defective').remove();
+        $('#parcel_details_defectives').remove();
+
+        $('#pacel_no_2').append('<span id="parcel_no_value_defective">ID: '+ parcel_ID +'</span>');
+        $.post(
+            "api/routes.php",
+            {parcel_ID: parcel_ID,action:"get_details_parcel_defectives",type:"users"},
+            function(data){ 
+                // location.reload(true); 
+                $('#parcel_modal_body_defective').append(data);
             }
         );
     }
@@ -224,5 +267,37 @@
             }          
             });
         }));
+
+        $("form#parce_update_defective").on('submit',(function(e) {
+            e.preventDefault();
+            $.ajax({
+            url:  "api/routes.php",
+            type: "POST",
+            data:  new FormData(this),
+            contentType: false,
+                    cache: false,
+            processData:false,
+            beforeSend : function()
+            {
+                //$("#preview").fadeOut();
+                // $("#err").fadeOut();
+            },
+            success: function(data)
+                {
+                    // if(data =='select'){
+                    //     alert(data);
+                    // } else {
+                        location.reload(true); 
+                    // }
+                },
+                error: function(e) 
+                {
+                //  $("#err").html(e).fadeIn();
+                }          
+                });
+        }));
+
+
+        
     });
 </script>

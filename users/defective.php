@@ -91,7 +91,7 @@
                                 </thead>
                                 <tbody>
                                 <?php
-                                    $parcel = $db->select("SELECT * FROM parcel_details where user_id = ? and `status` = (13) order by created_at desc", array($_SESSION["user_id"]));
+                                    $parcel = $db->select("SELECT * FROM parcel_details pd inner join defective_items di using(idparcel_details) where user_id = ?  order by pd.created_at desc", array($_SESSION["user_id"]));
                                     if(count($parcel) > 0){
                                         foreach ($parcel as $key => $value) {
                                             ?>

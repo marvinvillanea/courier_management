@@ -104,9 +104,16 @@ if(isset($_GET["action"]) ){
                 if($details)
                     echo $details;
             }
-            if($action == "update_notify_courier"){
+
+            if($action == "stor_defective_items"){
                 $crud = new UsersControllerClass();
-                $details = $crud->update_notify_courier();
+                $details = $crud->stor_defective_items();
+                if($details)
+                    echo $details;
+            }
+            if($action == "get_details_parcel_defectives"){
+                $crud = new UsersControllerClass();
+                $details = $crud->get_details_parcel_defectives();
                 if($details)
                     echo $details;
             }

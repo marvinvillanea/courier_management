@@ -199,7 +199,7 @@ class UsersControllerClass {
                 $details .= '<option value ="select">--Plase select rate--</option>';
                 $details .= '<option value ="1">Very Poor</option>';
                 $details .= '<option value ="2">Poor</option>';
-                $details .= '<option value ="3">OK</option>';
+                $details .= '<option value ="3">Good</option>';
                 $details .= '<option value ="4">Very Good</option>';
                 $details .= '<option value ="5">Excellent</option>';
                 $details .= '</select>';
@@ -219,13 +219,21 @@ class UsersControllerClass {
             Validate Courier: '.$details.'<br><br>
             Comment: <input type="text" name="user_comment" class="form-control" id="user_comment" '.$comment.' /><br><hr>
             </div>';
+            
+
+            $getDataDefective = $this->db->select("select * from defective_items where idparcel_details = ? ", array($data[0]["idparcel_details"]));
+            
+            $button ="";
+            if(count($getDataDefective) == 0){
+                $button = '<button type="button" class="btn btn-danger" id="defective_modal" onclick="defectivesModal('.$data[0]["idparcel_details"].')" >Defective Item</button>';
+            }
 
             if(count($get_Rate) > 0 ){
-                $div = '<div id="parcel_details"><div class="modal-body">'.$div2.'</div><div class="modal-footer">
+                $div = '<div id="parcel_details"><div class="modal-body">'.$div2.'</div><div class="modal-footer">'.$button.'
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div></div>';
             } else {
-                $div = '<div id="parcel_details"><div class="modal-body">'.$div2.'</div><div class="modal-footer">
+                $div = '<div id="parcel_details"><div class="modal-body">'.$div2.'</div><div class="modal-footer">'.$button.'
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 <button type="submit" class="btn btn-primary" id="parcel_updates" name="confirm">Confirm</button>
                 </div></div>';
@@ -265,6 +273,32 @@ class UsersControllerClass {
     }
 
     
+    public function stor_defective_items(){
+        print_r($_POST);
+        try {
+			extract($_POST);
+            // echo "<pre>";
+            //     var_dump($_POST);
+            // echo "</pre>";
+            // if($rate_type == "select") {
+            //     echo "select";
+            // }elseif(trim($user_comment) == ""){
+            //     echo "select";
+            // } else {
+            //     $get_details = $this->db->Select("select * from parcel_details where idparcel_details = ? limit 1", array($parcel_details_id));
+            $this->db->Insert("INSERT INTO defective_items (`idparcel_details`,`comment`) VALUES (?,?) ", 
+            array(
+            $id, 
+            $user_comment,
+            ));
+            //     echo "SUCCESS";
+            // }
+		} catch(\Exception $e) {
+			echo "FAILED";
+		}
+    }
+
+    
     private static function getMyUrl()
     {
       $protocol = (!empty($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) == 'on' || $_SERVER['HTTPS'] == '1')) ? 'https://' : 'http://';
@@ -279,6 +313,30 @@ class UsersControllerClass {
         extract($_POST);
         $data = $this->db->Update("update users_notify SET status = 1 WHERE id_notify = ? ", array($id));
         echo $this->getMyUrl().'/index.php?page=all_list'; 
+    }
+
+    public function get_details_parcel_defectives(){
+        extract($_POST);
+        $data = $this->db->select("select recepient_name,recepient_address,recepient_contact_no,parcel_description,type_delivery, pd.created_at,pd.status, pd.amount, sw.description, ps.description as status_parcel, ps.id_status 
+        ,pd.recipient_image, pd.idparcel_details
+        from parcel_details pd
+        inner join users using (user_id)
+        inner join set_weight sw using(weight_id) 
+        inner join parcel_status ps ON pd.status = ps.id_status 
+        WHERE idparcel_details = ?  limit 1", array($parcel_ID));
+
+        // Upload Recipient: <input type="file" name="images" value="" id="recipient-image" accept="image/*" />
+        $div2 = '<div id="parcel_details_defectives">Recipient Name: '.$data[0]["recepient_name"].'<br><hr>
+            Description: '.$data[0]["parcel_description"].'<br><hr>
+            <input type="hidden" name="id" value="'.$data[0]["idparcel_details"].'" />
+            Created at: '.$data[0]["created_at"].'<br><hr>
+            Comment: <input type="text" name="user_comment" class="form-control" id="user_comment" /><hr>
+            </div>';
+        $div = '<div id="parcel_details_defectives"><div class="modal-body">'.$div2.'</div><div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="parce_update_defective" name="confirm">Mark As Defective Item</button>
+        </div></div>';
+        echo $div;
     }
 }
 
