@@ -188,15 +188,15 @@
                             <!-- <input id="recepient_address" name="recepient_address" type="text" class="form-control cc-name valid"  > -->
                             <div class="form-group">
                                 <label for="Province" class="control-label mb-1">Province</label>
-                                <input id="receiver_province" name="receiver_province" type="text" class="form-control" placeholder="Province" required>
+                                <input id="receiver_province" name="receiver_province" type="text" class="form-control " value="<?php echo $information["province"]?>" disabled>
                             </div>  
                             <div class="form-group">
                                 <label for="city" class="control-label mb-1">City</label>
-                                <input id="receiver_city" name="receiver_city" type="text" class="form-control " placeholder="City" required>
+                                <input id="receiver_city" name="receiver_city" type="text" class="form-control " value="<?php echo $information["city"]?>" disabled>
                             </div>  
                             <div class="form-group">
                                 <label for="zipcode" class="control-label mb-1">Zip Code</label>
-                                <input id="receiver_zipcode" name="receiver_zipcode" type="text" class="form-control " placeholder="Zip Code" required>
+                                <input id="receiver_zipcode" name="receiver_zipcode" type="text" class="form-control " value="<?php echo $information["zip_code"]?>" disabled>
                             </div>  
                             <div class="form-group">
                                 <label for="barangay" class="control-label mb-1">Barangay</label>

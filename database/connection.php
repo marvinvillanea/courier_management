@@ -19,10 +19,10 @@ class DatabaseClass{
 
         try{
 
-            $this->dbhost = "sql200.epizy.com"; // Ip Address of database if external connection.
-            $this->dbuser = "epiz_32932003"; // Username for DB
-            $this->dbpass = "Ef75oYN1ff"; // Password for DB
-            $this->dbname = "epiz_32932003_courier_management"; // DB Name
+            $this->dbhost = "localhost"; // Ip Address of database if external connection.
+            $this->dbuser = "root"; // Username for DB
+            $this->dbpass = ""; // Password for DB
+            $this->dbname = "pasuyo_management"; // DB Name
             $this->port = "3306"; // DB Name
 
             $this->connection = new PDO("mysql:host={$this->dbhost};dbname={$this->dbname};port=$this->port", $this->dbuser, $this->dbpass);

@@ -203,10 +203,17 @@ function addParcelUsers($db){
                 $parcel_description
             ]);
             $description = "You got New Order # ".$parcel_number." ".date('y-m-d h:m:s');
-            $db->Insert("INSERT INTO courier_notify (`user_id`,`description`) VALUES (?,?)", [
-                $idcourier_details,
-                $description
-            ]);
+            $get_Details_courier = $db->SELECT("select * from personal_info where user_id = ? ", [$idcourier_details]);
+            if(count($get_Details_courier) > 0){
+                
+                $db->Insert("INSERT INTO courier_notify (`user_id`,`description`) VALUES (?,?)", [
+                    $idcourier_details,
+                    $description
+                ]);  
+                $to = $get_Details_courier[0]->contact_no;
+                sentMessage($to, $description, $db);
+                
+            }
         }
         
        
@@ -214,6 +221,69 @@ function addParcelUsers($db){
         return $e->getMessage();
         // return false;
     }
+}
+
+ function getBalance($db){
+    try {
+        $client = new \GuzzleHttp\Client();
+
+        $response = $client->request('POST', 'https://api.movider.co/v1/balance', [
+            'headers' => [
+                'accept' => 'application/json',
+                'content-type' => 'application/x-www-form-urlencoded',
+            ],
+            'form_params' => [
+                'api_key' => '2H7GtWOeyWYMff0XzK7en5zEdy6',
+                'api_secret' => 'l8KFeCstZZokPZFEW0n8ci8L21k9PQ',
+            ]
+        ]);
+        savelog($response->getBody(), $db);
+        $data = json_decode($response->getBody());
+        if(isset($data->amount)){
+            return $data->amount > 0.100 ? true : false;
+         }
+        return false;
+    } catch(\Exception $e) {
+        $data = $e->getMessage();
+    }
+    
+}
+
+ function sentMessage($to,$text,$db){
+
+    if(getBalance($db)){
+
+        $client = new \GuzzleHttp\Client();
+        $form_params =[
+            'api_key' => '2H7GtWOeyWYMff0XzK7en5zEdy6',
+            'api_secret' => 'l8KFeCstZZokPZFEW0n8ci8L21k9PQ',
+            'from' => 'MVDSMS',
+            'to' => $to,
+            'text' => $text,
+        ];
+        savelog(json_encode($form_params), $db);
+        $response = $client->request('POST', 'https://api.movider.co/v1/sms', [
+            'headers' => [
+                'accept' => 'application/json',
+                'content-type' => 'application/x-www-form-urlencoded',
+            ],
+            'form_params' => $form_params
+        ]);
+        savelog($response->getBody(), $db);
+        $data = json_decode($response->getBody());
+        if(isset($data->remaining_balance)){
+            return true;
+        }
+        return false;
+    }
+
+    return false;
+    
+}
+
+function savelog($data , $db){
+    // $this->db->Insert()
+   $db->Insert("INSERT INTO error_logs (descriptions) VALUES (?) ", array($data ));
 }
 
 ?>

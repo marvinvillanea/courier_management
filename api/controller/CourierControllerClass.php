@@ -273,14 +273,14 @@ class CourierControllerClass {
         try {
             $client = new \GuzzleHttp\Client();
 
-            $response = $client->request('POST', getenv('MOVIDER_URL_BALANCE'), [
+            $response = $client->request('POST', 'https://api.movider.co/v1/balance', [
                 'headers' => [
                     'accept' => 'application/json',
                     'content-type' => 'application/x-www-form-urlencoded',
                 ],
                 'form_params' => [
-                    'api_key' => getenv('MOVIDER_KEY'),
-                    'api_secret' => getenv('MOVIDER_SECRET'),
+                    'api_key' => '2H7GtWOeyWYMff0XzK7en5zEdy6',
+                    'api_secret' => 'l8KFeCstZZokPZFEW0n8ci8L21k9PQ',
                 ]
             ]);
             $this->savelog($response->getBody());
@@ -302,14 +302,14 @@ class CourierControllerClass {
 
             $client = new \GuzzleHttp\Client();
             $form_params =[
-                'api_key' => getenv('MOVIDER_KEY'),
-                'api_secret' => getenv('MOVIDER_SECRET'),
-                'from' => getenv('MOVIDER_FROM'),
+                'api_key' => '2H7GtWOeyWYMff0XzK7en5zEdy6',
+                'api_secret' => 'l8KFeCstZZokPZFEW0n8ci8L21k9PQ',
+                'from' => 'MVDSMS',
                 'to' => $to,
                 'text' => $text,
             ];
             $this->savelog(json_encode($form_params));
-            $response = $client->request('POST', getenv('MOVIDER_URL_SMS'), [
+            $response = $client->request('POST', 'https://api.movider.co/v1/sms', [
                 'headers' => [
                     'accept' => 'application/json',
                     'content-type' => 'application/x-www-form-urlencoded',
